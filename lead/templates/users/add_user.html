@@ -1,0 +1,33 @@
+{% extends '../dashboard.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-3">
+        <div class="row">
+            <div class="col col-lg-8 p-3 border roundend">
+                <form method="POST">
+                    <h5>Create User</h5>
+                    <hr>
+                    {% csrf_token %}
+                    <div class="form-group mb-4">
+                        {{ form|crispy }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add User</button>
+                </form>
+            </div>
+            <div class="col">
+                <div class="card mb-3">
+                    <h5 class="card-header">Manage Users</h5>
+                    <div class="card-body">
+                        <!-- <a class="btn btn-warning mb-3 w-100" href="{% url 'add_user' %}">Add Customer</a> -->
+                        <a class="btn btn-info mb-3 w-100" href="{% url 'users' %}">Recent</a>
+                        <a class="btn btn-dark mb-3 w-100" href="{% url 'users' %}">All Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
