@@ -1,11 +1,172 @@
-<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_filters %}
+
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSC</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+    <title>Developer Student Club</title>
 </head>
+
 <body>
-    This is the main page!
+
+    <!-- header  -->
+    <!-- nav  -->
+    <div class="header">
+        <!-- nav  -->
+        <nav class="navbar navbar-expand-lg bg-light p-3 fixed-top border-none">
+            <div class="container-fluid">
+                <a class="navbar-brand px-md-5" id="brand" href="#">
+                    <img src="{% static 'images/mmtvc_logo.jpeg'%}" alt="" style="width: 40px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-md-flex justify-content-end w-100">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Join Us
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="">MMTVC Student</a></li>
+                                <li><a class="dropdown-item" href="">MMTVC Staff</a></li>
+                                <li><a class="dropdown-item" href="">Public User</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-md-5">
+                            <a class="btn btn-outline-warning rounded" href="{% url 'login'%}">Signin</a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+
+        {% block content %}
+        <!-- header content  -->
+        <div class="row p-5 justify-content-between">
+            <div class="col-12 col-md-6 p-5 mt-5">
+                <p class="small fw-lighter"># Open To The Public</p>
+                <h1 class="large_h fw-light fade-in">
+                    Maasai Mara Technical and Vocational College Library
+                </h1>
+
+                <p class="fw-lighter">
+                    Register today to get access to our large collection of books, ranging from captivating novels to
+                    mathematics and engineering coursebooks.
+                </p>
+                <a class="btn btn-lg btn-outline-warning  rounded mb-3" href="">Get
+                    Started</a>
+            </div>
+            <div class="col-12 col-md-6 py-md-5 p-md-2 rounded">
+                <img src="{% static 'images/mmtvc-banner.jpeg'%}" alt="" style="height: 600px;" class="rounded">
+            </div>
+        </div>
+    </div>
+
+    <!-- about  -->
+    <section id="about">
+        <div class="container-fluid p-5 bg-dark text-white">
+            <div class="row p-5">
+                <div class="col-12 col-md-4 px-5 border border-2 border-white about-img">
+                </div>
+                <div class="col">
+                    <h2 class="text-warning">About</h2>
+                    <h4 class="fw-light">
+                        The MMTVC Library Management System is an institution's tool designed to serve both students and
+                        the
+                        public. It offers various services such as borrowing books and accessing library resources. The
+                        system helps users find and borrow books easily, manage their accounts, and receive
+                        notifications
+                        for overdue items. It aims to make the library experience smooth and efficient for everyone,
+                        ensuring that all users can take full advantage of the library's offerings.
+                    </h4>
+
+                    <a href="" class="btn btn-outline-warning">Find Out More</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- contact_us  -->
+    <section id="contact">
+        <div class="container p-5">
+            <h2 class="text-warning">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{% static 'images/lg.jpg'%}" alt="" style="width: 100%;" class="rounded">
+                </div>
+                <div class="col-md-6">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form | crispy }}
+                        <input type="submit" value="Contact Us" class="btn btn-outline-warning btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer  -->
+    <footer>
+        <div class="container-fluid bg-dark text-white">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <h4 class="text-warning fade-in">MMTVC Library System</h4>
+                        <p class="fade-in">
+                            MMTVC Library Management System allows users to borrow books and access other library
+                            resources easily. The system helps
+                            manage user accounts, track borrowed items, and send notifications for overdue books. By
+                            simplifying these processes, it ensures that everyone can efficiently use the library's
+                            services and find the materials they need.
+                        </p>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <h5 class="text-warning py-2">Useful Links</h5>
+                        <ul>
+                            <li><a class="text-decoration-none text-white" href="#">Home</a></li>
+                            <li><a class="text-decoration-none text-white" href="#">About</a></li>
+                            <li><a class="text-decoration-none text-white" href="#">Contact Us</a></li>
+                            <li><a class="text-decoration-none text-white" href="">Join
+                                    Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="text-center pt-3">
+                        <h3 class="fw-lighter text-warning small">@2024: MMTVC DSC.</h3>
+                    </div>
+                </div>
+    </footer>
+
+    {% endblock %}
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/index.js'%}"></script>
 </body>
+
 </html>

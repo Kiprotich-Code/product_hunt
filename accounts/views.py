@@ -12,16 +12,20 @@ def signin(request):
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
-            login(request, user)
-            
-            # redirect users based on role            
-            if user.is_staff:
-                messages.success(request, 'Login successful!')
-                return redirect('dashboard')
-            
-            else:
-                messages.success(request, 'Login successful!')
-                return redirect('home')
+            if form.password2 != form.password:
+                messages.error(request, 'Password Mismatch')
+
+            else: 
+                login(request, user)
+                
+                # redirect users based on role            
+                if user.is_staff:
+                    messages.success(request, 'Login successful!')
+                    return redirect('dashboard')
+                
+                else:
+                    messages.success(request, 'Login successful!')
+                    return redirect('index')
         
         else:
             messages.error(request, 'User Does Not Exist!')

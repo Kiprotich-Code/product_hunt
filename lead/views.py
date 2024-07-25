@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import CustomUser
 from django.views.generic import ListView, UpdateView, DeleteView, DetailView, CreateView
-from .forms import AddUserForm, UpdateUserForm, AddCategoryForm
+from .forms import AddUserForm, UpdateUserForm, AddCategoryForm, AddProductForm
 from .models import Category, Product
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required()
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 
 # CRUD USERS 
 # ADD USERS 
+@login_required()
 def add_user(request):
     if request.method == 'POST':
         form = AddUserForm(request.POST)
@@ -28,6 +31,7 @@ def add_user(request):
     return render(request, 'users/add_user.html', context)
 
 # USER UPDATE 
+@login_required()
 def user_update(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def user_update(request, pk):
 
 
 # USER DELETE 
+@login_required()
 def user_delete(request, pk):
     user = get_object_or_404(CustomUser, pk=pk)
     if request.method == 'POST':
@@ -86,3 +91,30 @@ class CategoryDeleteView(DeleteView):
     model = Category
     success_url = '/lead/categories/'
     template_name = 'categories/confirm_delete_category.html'
+
+
+
+# CRUD ON PRODUCTS 
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'products/add_product.html'
+    form_class = AddProductForm
+    success_url = '/lead/products/'
+
+class ProductListView(ListView):
+    context_object_name = 'products'
+    model = Product
+    template_name = 'products/products.html'
+    paginate_by = 5
+
+class ProductUpdateView(UpdateView):
+    template_name = 'products/product_update.html'
+    model = Product
+    fields = ('title', 'sub_title', 'desc', 'category', 'author', )
+    success_url = '/lead/products/'
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = '/lead/products/'
+    template_name = 'products/confirm_delete_product.html'
