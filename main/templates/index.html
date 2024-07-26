@@ -14,7 +14,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/index.css'%}">
 
-    <title>Developer Student Club</title>
+    <title>Developer Student's Club</title>
 </head>
 
 <body>
@@ -44,19 +44,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}">Contact</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Join Us
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">MMTVC Student</a></li>
-                                <li><a class="dropdown-item" href="">MMTVC Staff</a></li>
-                                <li><a class="dropdown-item" href="">Public User</a></li>
-                            </ul>
-                        </li>
                         <li class="nav-item mx-md-5">
-                            <a class="btn btn-outline-warning rounded" href="{% url 'login'%}">Signin</a>
+                            <a class="btn btn-info rounded" href="{% url 'login'%}">Signin</a>
                         </li>
                 </div>
             </div>
@@ -68,18 +57,19 @@
             <div class="col-12 col-md-6 p-5 mt-5">
                 <p class="small fw-lighter"># Open To The Public</p>
                 <h1 class="large_h fw-light fade-in">
-                    Maasai Mara Technical and Vocational College Library
+                    MMTVC Developer Student's Club
                 </h1>
 
                 <p class="fw-lighter">
                     Register today to get access to our large collection of books, ranging from captivating novels to
                     mathematics and engineering coursebooks.
                 </p>
-                <a class="btn btn-lg btn-outline-warning  rounded mb-3" href="">Get
+                <a class="btn btn-lg btn-info rounded mb-3" href="">Get
                     Started</a>
             </div>
-            <div class="col-12 col-md-6 py-md-5 p-md-2 rounded">
-                <img src="{% static 'images/mmtvc-banner.jpeg'%}" alt="" style="height: 600px;" class="rounded">
+            <div class="col-12 col-md-6 py-md-5 rounded">
+                <img src="{% static 'images/anti-hacking.gif'%}" alt="" style="width: 100%; height: 100%;"
+                    class="rounded">
             </div>
         </div>
     </div>
@@ -87,22 +77,32 @@
     <!-- about  -->
     <section id="about">
         <div class="container-fluid p-5 bg-dark text-white">
-            <div class="row p-5">
-                <div class="col-12 col-md-4 px-5 border border-2 border-white about-img">
-                </div>
-                <div class="col">
-                    <h2 class="text-warning">About</h2>
-                    <h4 class="fw-light">
-                        The MMTVC Library Management System is an institution's tool designed to serve both students and
-                        the
-                        public. It offers various services such as borrowing books and accessing library resources. The
-                        system helps users find and borrow books easily, manage their accounts, and receive
-                        notifications
-                        for overdue items. It aims to make the library experience smooth and efficient for everyone,
-                        ensuring that all users can take full advantage of the library's offerings.
-                    </h4>
+            <div class="container">
+                <div class="row p-5">
+                    <div class="col-12 col-md-6 px-5 border border-2 border-white about-img rounded">
+                    </div>
+                    <div class="col">
+                        <h2 class="text-info">About</h2>
+                        <p class="fw-light">
+                            Welcome to the Developer Student Club, where coding dreams take flight faster than a Wi-Fi
+                            signal in a coffee shop. Our club is the ultimate playground for tech enthusiasts, from
+                            beginners who just learned what "Hello, World!" means to seasoned pros who can code in their
+                            sleep (but don't, because that's dangerous).
+                        </p>
+                        <p class="fw-light">
+                            We offer a smorgasbord of activities: hackathons that make Red Bull's stock price soar,
+                            workshops that turn code into art, and networking events where you can finally understand
+                            what "full-stack developer" means. Our mission? To turn every member into a coding ninja,
+                            equipped with skills sharper than a samurai sword.
+                        </p>
+                        <p class="fw-light">
+                            Join us and dive into a world where bugs are squashed like tiny digital pests, and every
+                            line of code is a step closer to world domination (or at least, a really cool app). Let's
+                            make tech magic together, one keystroke at a time!
+                        </p>
 
-                    <a href="" class="btn btn-outline-warning">Find Out More</a>
+                        <a href="" class="btn btn-info">Find Out More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
     <!-- contact_us  -->
     <section id="contact">
         <div class="container p-5">
-            <h2 class="text-warning">Contact Us</h2>
+            <h2 class="text-info">Contact Us</h2>
             <div class="row">
                 <div class="col-md-6">
                     <img src="{% static 'images/lg.jpg'%}" alt="" style="width: 100%;" class="rounded">
@@ -121,7 +121,7 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form | crispy }}
-                        <input type="submit" value="Contact Us" class="btn btn-outline-warning btn-block">
+                        <input type="submit" value="Contact Us" class="btn btn-info btn-block">
                     </form>
                 </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="container py-5">
                 <div class="row">
                     <div class="col-12 col-md-8">
-                        <h4 class="text-warning fade-in">MMTVC Library System</h4>
+                        <h4 class="text-info fade-in">Developer's Student Club</h4>
                         <p class="fade-in">
                             MMTVC Library Management System allows users to borrow books and access other library
                             resources easily. The system helps
@@ -144,7 +144,7 @@
                         </p>
                     </div>
                     <div class="col-12 col-sm-4">
-                        <h5 class="text-warning py-2">Useful Links</h5>
+                        <h5 class="text-info py-2">Useful Links</h5>
                         <ul>
                             <li><a class="text-decoration-none text-white" href="#">Home</a></li>
                             <li><a class="text-decoration-none text-white" href="#">About</a></li>
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="text-center pt-3">
-                        <h3 class="fw-lighter text-warning small">@2024: MMTVC DSC.</h3>
+                        <h3 class="fw-lighter text-info small">@2024: MMTVC DSC.</h3>
                     </div>
                 </div>
     </footer>
