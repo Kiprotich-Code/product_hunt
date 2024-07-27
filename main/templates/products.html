@@ -1,0 +1,71 @@
+{% extends './index.html' %}
+{% load static %}
+
+{% block products %}
+<div class="container p-5">
+    <div class="mt-5">
+        <p class="text-info">Product Ideas</p>
+    </div>
+
+    {% if prods %}
+
+    <div class="d-flex gap-1 flex-wrap flex-column flex-md-row">
+        {% for prod in prods %}
+        <div class="card" style="width: 20rem;">
+            <!-- <img src="{% static 'images/coding.jpeg' %}" class="card-img-top" alt="..." style="width: 100%; height: 200px;"> -->
+            <div class="card-body">
+                <h3>#{{forloop.counter}}</h3>
+                <button class="btn btn-sm btn-outline-primary rounded p-2 my-2">{{prod.category}}</button>
+                <p class="card-title fw-bold text-info">{{prod.title}}</p>
+                <p class="fw-bold">{{prod.sub_title}} by
+                    <a href="" class="text-decoration-none">{{prod.author}}</a>
+                </p>
+                <p class="desc-preview" id="desc-preview-{{ forloop.counter }}">
+                    {{ prod.desc|truncatewords:5 }}
+                    <a href="javascript:void(0);" onclick="toggleDescription({{ forloop.counter }});"
+                        id="read-more-{{ forloop.counter }}">Read More</a>
+                </p>
+                <p class="desc-full d-none" id="desc-full-{{ forloop.counter }}">
+                    {{ prod.desc }}
+                    <a href="javascript:void(0);" onclick="toggleDescription({{ forloop.counter }});"
+                        id="read-less-{{ forloop.counter }}">Read Less</a>
+                </p>
+                <hr>
+                <!-- downvote & upvote button -->
+                <!-- Voting Section -->
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'vote' prod.id 'upvote' %}" class="btn btn-link text-success p-1" title="Upvote">
+                        <i class="fas fa-arrow-up"></i>
+                    </a>
+                    <span class="mx-2">{{ prod.upvotes }}</span>
+                    <div class="px-3"></div><!---BAD PRACTICE--->
+                    <a href="{% url 'vote' prod.id 'downvote' %}" class="btn btn-link text-danger p-1" title="Downvote">
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                    <span class="mx-2">{{ prod.downvotes }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% comment %} pagination {% endcomment %}
+    <div class='pagination justify-content-center py-3'>
+        {% if page_obj.has_previous %}
+        <a href='{% url "prods" %}?page={{ page_obj.previous_page_number }}' class="text-decoration-none">Previous </a>
+        {% endif %}
+
+        <span class='mx-4'>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href='{% url "prods" %}?page={{ page_obj.next_page_number }}' class="text-decoration-none"> Next</a>
+        {% endif %}
+    </div>
+
+    {% else %}
+    <h3>There are product ideas at the moment!</h3>
+    {% endif %}
+</div>
+{% endblock %}

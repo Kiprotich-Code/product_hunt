@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import CustomUserManager
+from django.conf import settings
 
 # Create your models here.
 class CustomUser(AbstractUser):
@@ -23,10 +24,11 @@ class CustomUser(AbstractUser):
     
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='user_profile')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    dp = models.ImageField(default='coding.jpeg', upload_to='profile_pics')
     club_role = models.CharField(max_length=100)
     designation = models.CharField(max_length=100)
     bio = models.TextField()
 
     def __str__(self):
-        return self.user
+        return self.user.email
