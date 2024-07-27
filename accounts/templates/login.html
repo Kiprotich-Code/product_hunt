@@ -19,6 +19,8 @@
             {% endif %}
             <h2 class="lh-lg border border-top-0 border-end-0 border-start-0 w-50 mb-3">Login</h2>
             <form method="POST">
+                {{request.user}}
+                {{request.user.user_type}}
                 {% csrf_token %}
                 <div class="form-group mb-4">
                     {{form.email}}

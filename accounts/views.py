@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.shortcuts import redirect
+
 def signin(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -16,19 +20,20 @@ def signin(request):
         if user is not None:
             if password2 != password:
                 messages.error(request, 'Password Mismatch')
-
+                return redirect('login')
             else: 
-                login(request, user)
-                
-                # redirect users based on role            
-                if user.is_staff:
+
+                login(request, user)                
+                # redirect users based on role
+                if user.user_type.lower() == 'admin':
                     messages.success(request, 'Login successful!')
                     return redirect('dashboard')
-                 
+                elif user.user_type.lower() == 'member':
+                    messages.success(request, 'Member login successful!')
+                    return redirect('members_dashboard')
                 else:
-                    messages.success(request, 'Login successful!')
-                    return redirect('profile')
-        
+                    messages.error(request, 'Error! System can\'t determine your user type!')
+                    return redirect('login')
         else:
             messages.error(request, 'User Does Not Exist!')
             return redirect('login')

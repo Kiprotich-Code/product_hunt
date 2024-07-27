@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- BootStrap 5 -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-Doce.min.css' %}">
+    <!-- <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"/> -->
+
+    <!-- Fontasome -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+    <!-- Main Design CSS -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/framewoek.css' %}">
+</head>
+
+<body>
+    <div class="page d-flex">
+        <!-- Start Sidebar -->
+        <div class="sidebar bg-white position-relative p-3">
+            <div class="main-logo mt-0 mb-4 mb-md-4 m-md-auto">
+                <a href="{% url 'members_dashboard'%}"><img class="ps-lg-2 ps-0" src="{% static 'images/mmtvc_logo.jpeg' %}" alt="KK8"></a>
+            </div>
+            <ul class="list-unstyled p-0 fw-medium">
+                <li>
+                    <a class="active d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded " href="{% url 'members_dashboard'%}">
+                        <i class="fa-regular fa-chart-bar fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block ">Dashboard</span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="">
+                        <i class="fa-solid fa-gear fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">Products</span>
+                    </a>
+                </li> -->
+                <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="{% url 'profiles'%}">
+                        <i class="fa-regular fa-user fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="{% url 'mb_products' %}">
+                        <i class="fa-solid fa-diagram-project fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="{% url 'update_profile'%}">
+                        <i class="fa-solid fa-graduation-cap fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="{% url 'index'%}">
+                        <i class="fa-regular fa-circle-user fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">Homepage</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex text-center text-dark fs-9 mb-2 mb-1 p-2 rounded" href="{% url 'signout'%}">
+                        <i class="fa-regular fa-file fa-fw align-self-center"></i>
+                        <span class="ms-2 d-none d-md-block">Signout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Sidebar -->
+        <div class="content overflow-hidden p-3 w-100">
+            <!-- Start Head -->
+            <div class="head bg-white p-2 between-flex rounded">
+                <div class="search position-relative ">
+                    <input class="p-2 ms-1 rounded" type="search" placeholder="Search">
+                </div>
+                <div class="icons d-flex align-items-center">
+                    <span class="notification position-relative">
+                        <i class="fa-regular fa-bell fa-lg"></i>
+                    </span>
+                    <img class="rounded-pill ms-3" src="imgs/avatar.png" alt="">
+                </div>
+            </div>
+            <!-- End Head -->
+
+            {% block content %}
+            <h1 class="position-relative fw-bold fs-2 ms-3 me-3 mt-3 mb-5">Dashboard</h1>
+            <div class="wrapper grid gap-3">
+                <!-- Start Statistics Widget  -->
+                <div
+                    class="statistics bg-white rounded-3 p-2 g-col-12 g-col-lg-6 g-col-xl-4 pb-3 text-center text-sm-start">
+                    <div class="p-4 pb-0 d-block rounded-3">
+                        <h2 class="m-0">Tickets Statistics</h2>
+                        <p class="mt-1 mb-0 gray-c">Everything About Support Tickets</p>
+                    </div>
+                    <div class="grid gap-3 mt-5 p-3">
+                        <div class="border border-warning p-3 mb-3 g-col-12 g-col-sm-6 text-center rounded-3">
+                            <i class="fa-regular fa-rectangle-list fa-lg fs-4  mb-2 text-warning"></i>
+                            <h3 class="fw-bold">2500</h3>
+                            <p class="mt-1 mb-0 gray-c">Total</p>
+                        </div>
+                        <div class="border border-primary-subtle p-3 mb-3 g-col-12 g-col-sm-6 text-center rounded-3">
+                            <i class="fa-solid fa-spinner fa-lg fs-4  mb-2 text-primary"></i>
+                            <h3 class="fw-bold">2500</h3>
+                            <p class="mt-1 mb-0 gray-c">Total</p>
+                        </div>
+                        <div class="border border-success p-3 mb-3 g-col-12 g-col-sm-6 text-center rounded-3">
+                            <i class="fa-regular fa-circle-check fa-lg fs-4  mb-2 text-success"></i>
+                            <h3 class="fw-bold">2500</h3>
+                            <p class="mt-1 mb-0 gray-c">Total</p>
+                        </div>
+                        <div class="border border-danger p-3 mb-3 g-col-12 g-col-sm-6 text-center rounded-3">
+                            <i class="fa-regular fa-rectangle-xmark fa-lg fs-4  mb-2 text-danger"></i>
+                            <h3 class="fw-bold">2500</h3>
+                            <p class="mt-1 gray-c">Total</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Statistics Widget  -->
+                <!-- Start News Widget  -->
+                <div class="news bg-white rounded-3 p-2 g-col-12 g-col-lg-6 g-col-xl-4 pb-3 text-center text-sm-start">
+                    <h2 class="m-0 p-4 pb-0 rounded-3">Latest News</h2>
+                    <div>
+                        <div
+                            class="news-list d-block  d-sm-flex align-items-center p-2 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                            <img class="rounded-3 me-3" src="imgs/news-01.png" alt="">
+                            <div class="info-news flex-grow-1 mt-3">
+                                <h5 class="fs-6 fw-bold">Created SASS Section</h5>
+                                <p class="fs-7 gray-c m-0">New SASS Examples & Tutorials</p>
+                            </div>
+                            <button type="button" class="btn btn-sm bg-hover text-dark bg-eee border-0">3 days
+                                Ago</button>
+                        </div>
+                        <div
+                            class="news-list d-block  d-sm-flex align-items-center p-2 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                            <img class="rounded-3 me-3" src="imgs/news-02.png" alt="">
+                            <div class="info-news flex-grow-1 mt-3">
+                                <h5 class="fs-6 fw-bold">Changed The Design</h5>
+                                <p class="fs-7 gray-c m-0">A Brand New Website Design</p>
+                            </div>
+                            <button type="button" class="btn btn-sm bg-hover text-dark bg-eee border-0">5 days
+                                Ago</button>
+                        </div>
+                        <div
+                            class="news-list d-block  d-sm-flex  align-items-center p-2 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                            <img class="rounded-3 me-3" src="imgs/news-03.png" alt="">
+                            <div class="info-news flex-grow-1 mt-3">
+                                <h5 class="fs-6 fw-bold">Team Increased</h5>
+                                <p class="fs-7 gray-c m-0">3 Developers Joined The Team</p>
+                            </div>
+                            <button type="button" class="btn btn-sm bg-hover text-dark bg-eee border-0">7 days
+                                Ago</button>
+                        </div>
+                        <div class="news-list d-block  d-sm-flex  align-items-center p-2 pt-4">
+                            <img class="rounded-3 me-3" src="imgs/news-04.png" alt="">
+                            <div class="info-news flex-grow-1 mt-3">
+                                <h5 class="fs-6 fw-bold">Added Payment Gateway</h5>
+                                <p class="fs-7 gray-c m-0">Many New Payment Gateways Added</p>
+                            </div>
+                            <button type="button" class="btn btn-sm bg-hover text-dark bg-eee border-0">9 days
+                                Ago</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- End News Widget  -->
+                <!-- Start Tasks Widget -->
+                <div class="tasks bg-white rounded-3 p-2 g-col-12 g-col-lg-6 g-col-xl-4 pb-3 text-center text-sm-start">
+                    <h2 class="m-0 p-4 pb-0 rounded-3">Latest Tasks</h2>
+                    <div
+                        class="news-list d-flex align-items-center p-4 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                        <div class="info-news text-start flex-grow-1 mt-3">
+                            <h5 class="fs-6 fw-bold">Created SASS Section</h5>
+                            <p class="fs-7 gray-c m-0">New SASS Examples & Tutorials</p>
+                        </div>
+                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                    </div>
+                    <div
+                        class="task-list d-flex align-items-center p-4 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                        <div class="info-task text-start flex-grow-1 mt-3">
+                            <h5 class="fs-6 fw-bold">Created SASS Section</h5>
+                            <p class="fs-7 gray-c m-0">New SASS Examples & Tutorials</p>
+                        </div>
+                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                    </div>
+                    <div
+                        class="task-list d-flex align-items-center p-4 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                        <div class="info-task text-start flex-grow-1 mt-3">
+                            <h5 class="fs-6 fw-bold">Created SASS Section</h5>
+                            <p class="fs-7 gray-c m-0">New SASS Examples & Tutorials</p>
+                        </div>
+                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                    </div>
+                    <div
+                        class="task-list d-flex align-items-center p-4 pt-4 pb-4 border border-top-0 border-end-0 border-start-0 border-light-subtle">
+                        <div class="info-task text-start flex-grow-1 mt-3">
+                            <h5 class="fs-6 fw-bold text-dark text-opacity-50 text-decoration-line-through">Created SASS
+                                Section</h5>
+                            <p class="fs-7 gray-c m-0 text-dark text-opacity-25 text-decoration-line-through">New SASS
+                                Examples & Tutorials</p>
+                        </div>
+                        <i class="fa-regular fa-trash-can fa-lg text-dark text-opacity-25"></i>
+                    </div>
+                    <div class="task-list d-flex align-items-center p-4 pt-4 pb-4">
+                        <div class="info-task text-start flex-grow-1 mt-3">
+                            <h5 class="fs-6 fw-bold">Created SASS Section</h5>
+                            <p class="fs-7 gray-c m-0">New SASS Examples & Tutorials</p>
+                        </div>
+                        <i class="fa-regular fa-trash-can fa-lg"></i>
+                    </div>
+                </div>
+                <!-- End Tasks Widget -->
+                <!-- Start Projects Widget -->
+                <div class="projects bg-white rounded-3 p-2 g-col-12">
+                    <h2 class="m-0 mb-3 p-4 rounded-3">Projects</h2>
+                    <div class="responsive-table overflow-x-auto">
+                        <table class="fs-5 min-1000 w-100">
+                            <thead>
+                                <tr class="fw-bold bg-eee">
+                                    <td class="p-3">Name</td>
+                                    <td class="p-3">Finish Date</td>
+                                    <td class="p-3">Client</td>
+                                    <td class="p-3">Price</td>
+                                    <td class="p-3">Team</td>
+                                    <td class="p-3">Status</td>
+                                </tr>
+                            </thead>
+                            <tbody class="fw-medium">
+                                <tr>
+                                    <td class="p-3">Ministry Wikipedia</td>
+                                    <td class="p-3">10 May 2022</td>
+                                    <td class="p-3">Ministry</td>
+                                    <td class="p-3">$5300</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-03.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-05.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-02.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span
+                                            class="btn btn-sm btn-warning text-light fw-bold">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Kerolos Shop</td>
+                                    <td class="p-3">8 MAR 2023</td>
+                                    <td class="p-3">Kerolos Company</td>
+                                    <td class="p-3">$9800</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-03.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-02.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span class="btn btn-sm btn-primary text-light fw-bold">In
+                                            Progress</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Mina Website</td>
+                                    <td class="p-3">22 May 2021</td>
+                                    <td class="p-3">Mina</td>
+                                    <td class="p-3">$900</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-03.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-02.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span
+                                            class="btn btn-sm btn-success text-light fw-bold">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Elzero Shop</td>
+                                    <td class="p-3">05 Sep 2021</td>
+                                    <td class="p-3">Elzero</td>
+                                    <td class="p-3">$8800</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-03.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-05.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-02.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span
+                                            class="btn btn-sm btn-success text-light fw-bold">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Kero Website</td>
+                                    <td class="p-3">24 May 2023</td>
+                                    <td class="p-3">Kero</td>
+                                    <td class="p-3">$1000</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-05.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span
+                                            class="btn btn-sm btn-danger text-light fw-bold">Rejected</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Arena Application</td>
+                                    <td class="p-3">01 Mar 2023</td>
+                                    <td class="p-3">Arena Company</td>
+                                    <td class="p-3">$8950</td>
+                                    <td class="p-3">
+                                        <img src="imgs/team-01.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-03.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-05.png" alt="Team">
+                                        <img class="ms-n3" src="imgs/team-02.png" alt="Team">
+                                    </td>
+                                    <td class="p-3"><span
+                                            class="btn btn-sm btn-success text-light fw-bold">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Projects Widget -->
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    <!-- Fontasome -->
+    <script src="{% static 'js/all.min.js' %}"></script>
+    <!-- BootStrap 5 -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Main JS -->
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/index.js'%}"></script>
+</body>
+
+</html>

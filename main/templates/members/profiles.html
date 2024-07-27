@@ -1,0 +1,29 @@
+{% extends '../members_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-3">
+    <p class="text-info"># Member Profiles</p>
+
+    {% if members %}
+    <div class="d-flex gap-3 flex-wrap flex-column flex-md-row">
+        {% for member in members %}
+        <div class="card profile-card" style="width: 20rem;">
+            <div class="card-body">
+                <div class="d-flex justify-content-center">
+                    <img src="{% static 'images/lg.jpg'%}" alt="" class="profile-card img">
+                </div>
+                <h5 class="card-title mt-3">{{member.full_names}}</h5>
+                <p class="card-text">DSC {{member.profile.club_role}}</p>
+                <p class="card-text">{{member.profile.designation}}</p>
+                <a href="">View Profile</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+        <h3>No Members</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -18,7 +18,11 @@ def add_user(request):
     if request.method == 'POST':
         form = AddUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            if user.user_type.lower() == 'admin':
+                user.is_staff = True
+
+            user.save()
             return redirect('dashboard')
         
     else:

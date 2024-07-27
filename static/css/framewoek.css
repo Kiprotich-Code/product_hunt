@@ -1,0 +1,65 @@
+.between-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bg-eee{
+  background-color: #eee;
+}
+.bg-hover:hover{
+  background-color: #c8c8c8;
+}
+.bg-hover2:hover{
+  background-color: #f9f9f9;
+}
+.bg-com:hover{
+  background-color: #0075ff;
+  color: #fff;
+}
+.w-fit{
+  width: fit-content;
+}
+.gray-c{
+  color: #888;
+}
+.blue-c{
+  color: #0075ff;
+}
+.twitter-bg{
+  background-color: #1da1f2;
+}
+.twitter-bg-alt{
+  background-color: #1ca0f266;
+}
+.face-bg{
+background-color: #1877f2;
+}
+.face-bg-alt{
+background-color: #1776f266;
+} 
+.youtube-bg{
+  background-color: #ff0000;
+}
+.youtube-bg-alt{
+  background-color: #ff000066;
+} 
+.linked-bg{
+  background-color: #0a66c2;
+}
+.linked-bg-alt{
+  background-color: #0a66c266;
+} 
+.avatar{
+  width: 64px;
+  height: 64px;
+  border: 2px solid #fff;
+  padding: 2px;
+  box-shadow: 0 0 5px #fff;
+  margin-top: -32px;
+}
+.ms-n3{
+  margin-left: -1.25rem;
+}
+.min-1000{
+  min-width: 900px;
+}

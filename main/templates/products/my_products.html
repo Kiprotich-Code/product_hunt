@@ -1,0 +1,118 @@
+{% extends '../members_dashboard.html' %}
+
+{% block content %}
+<div id="content" class="can_have_sidenav">
+    <div class="p-3">
+        {% block items %}
+        <h3 class="fw-lighter small"># Products</h3>
+        <div class="row">
+            <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+                {% if products %}
+                <div class="card">
+                    <h5 class="card-header">Products</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">PROD ID</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in products %}
+                                    <tr>
+                                        <td>{{product.id}}</td>
+                                        <td>{{product.title}}</td>
+                                        <td>{{product.category}}</td>
+                                        <td>{{product.author}}</td>
+                                        <td>
+                                            <a href="{% url 'mb_product_update' product.id %}"
+                                                class="btn btn-sm btn-outline-primary">Update</a>
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'mb_product_delete' product.id %}"
+                                                class="btn btn-sm btn-outline-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% comment %} pagination {% endcomment %}
+                        <div class='pagination justify-content-center'>
+                            {% if page_obj.has_previous %}
+                            <a href='{% url "products" %}?page={{ page_obj.previous_page_number }}'
+                                class="text-decoration-none">Previous </a>
+                            {% endif %}
+
+                            <span class='mx-4'>
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+
+                            {% if page_obj.has_next %}
+                            <a href='{ url "products" }?page={{ page_obj.next_page_number }}'
+                                class="text-decoration-none"> Next</a>
+                            {% endif %}
+                        </div>
+                        <!-- END Pagination -->
+                    </div>
+                </div>
+                {% else %}
+                <div class="py-5">
+                    <h3>
+                        Dear <strong>{{request.user.full_names}}</strong>, there are no products at the moment!
+                    </h3>
+                    <a class="btn btn-sm btn-outline-primary my-3" href="{% url 'mb_add_product' %}">Add Product</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endblock %}
+            <div class="col">
+                <div class="card mb-3">
+                    <h5 class="card-header">Manage Products</h5>
+                    <div class="card-body">
+                        <a class="btn btn-info mb-3 w-100" href="{% url 'mb_add_product' %}">Add</a>
+                        <a class="btn btn-dark mb-3 w-100" href="{% url 'mb_products' %}">All Products</a>
+                    </div>                    
+                </div>
+                
+
+                <!-- <div class="card mb-3">
+                    <h5 class="card-header">Recent</h5>
+                    {% if recent_products %}
+                    <div class="p-3">
+                        {% for user in recent_users %}
+
+                        <p>
+                            <strong>{{user.user_type}}</strong>: {{user.full_names}} <a href="">details.</a>
+                        </p>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="card-body">
+                        <p class="fw-lighter">
+                            Recently added users will appear here!
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="card">
+                    <h5 class="card-header">Chart</h5>
+                    <div class="card-body">
+                        <div class="card-text fw-lighter">Charts Will Appear Here!</div>
+                        <div id="traffic-chart"></div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
