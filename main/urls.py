@@ -22,6 +22,10 @@ urlpatterns = [
     path('my_products/', views.my_products, name='my_products'),
 
     # MEMBER PROFILES 
-    path('update_profile/', views.update_profile, name="update_profile"),
-    
+    path('profile_details/<pk>', views.MemberDetailView.as_view(), name='profile_details'),
+    path('index_profile_details/<pk>', views.IndexProfileDetailView.as_view(), name='index_profile_details'),
+    path('update_profile/', views.update_profile, name='update_profile'),
+
+    # my profile 
+    path('my_profile/', views.my_profile, name="my_profile"),    
 ]

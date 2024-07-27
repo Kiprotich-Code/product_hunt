@@ -1,0 +1,19 @@
+{% extends './index.html' %}
+{% load static %}
+
+{% block products %}
+<div class="p-5 mt-md-5 ">
+    <div class="container">
+        <div class="col col-md-6 m-auto text-center">
+            <img class="" src="{{ member.profile.dp.url }}" style="width: 400px; height: 400px;" />
+            <div class="media-body">
+                <h2 class="account-heading fw-bold"> {{ member.full_names }}</h2>
+                <p class="text-secondary"> DSC {{ member.profile.club_role }} | {{ member.profile.designation }}</p>
+            </div>
+            <hr>
+            <p>Bio</p>
+            <p class="text-secondary">{{ member.profile.bio }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

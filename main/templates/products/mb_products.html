@@ -20,7 +20,7 @@
                 <button class="btn btn-sm btn-outline-primary rounded p-2 my-2">{{prod.category}}</button>
                 <p class="card-title fw-bold text-info">{{prod.title}}</p>
                 <p class="fw-bold">{{prod.sub_title}} by
-                    <a href="" class="text-decoration-none">{{prod.author}}</a>
+                    <a href="{% url 'profile_details' prod.author.id %}" class="text-decoration-none">{{prod.author}}</a>
                 </p>
                 <p class="desc-preview" id="desc-preview-{{ forloop.counter }}">
                     {{ prod.desc|truncatewords:5 }}
@@ -32,20 +32,8 @@
                     <a href="javascript:void(0);" onclick="toggleDescription({{ forloop.counter }});"
                         id="read-less-{{ forloop.counter }}">Read Less</a>
                 </p>
-                <hr>
                 <!-- downvote & upvote button -->
-                <!-- Voting Section -->
-                <div class="d-flex align-items-center">
-                    <a href="{% url 'vote' prod.id 'upvote' %}" class="btn btn-link text-success p-1" title="Upvote">
-                        <i class="fas fa-arrow-up"></i>
-                    </a>
-                    <span class="mx-2">{{ prod.upvotes }}</span>
-                    <div class="px-3"></div><!---BAD PRACTICE--->
-                    <a href="{% url 'vote' prod.id 'downvote' %}" class="btn btn-link text-danger p-1" title="Downvote">
-                        <i class="fas fa-arrow-down"></i>
-                    </a>
-                    <span class="mx-2">{{ prod.downvotes }}</span>
-                </div>
+                <!-- Voting Section -->               
             </div>
         </div>
         {% endfor %}

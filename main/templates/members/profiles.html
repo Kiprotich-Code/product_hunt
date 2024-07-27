@@ -11,12 +11,12 @@
         <div class="card profile-card" style="width: 20rem;">
             <div class="card-body">
                 <div class="d-flex justify-content-center">
-                    <img src="{% static 'images/lg.jpg'%}" alt="" class="profile-card img">
+                    <img src="{{ member.profile.dp.url }}" alt="" class="profile-card img">
                 </div>
-                <h5 class="card-title mt-3">{{member.full_names}}</h5>
+                <h5 class="card-title mt-3"><strong>{{member.full_names}}</strong></h5>
                 <p class="card-text">DSC {{member.profile.club_role}}</p>
                 <p class="card-text">{{member.profile.designation}}</p>
-                <a href="">View Profile</a>
+                <a href="{% url 'profile_details' member.id %}">View Profile</a>
             </div>
         </div>
         {% endfor %}

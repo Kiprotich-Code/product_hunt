@@ -30,20 +30,8 @@
                     <a href="javascript:void(0);" onclick="toggleDescription({{ forloop.counter }});"
                         id="read-less-{{ forloop.counter }}">Read Less</a>
                 </p>
-                <hr>
                 <!-- downvote & upvote button -->
                 <!-- Voting Section -->
-                <div class="d-flex align-items-center">
-                    <a href="{% url 'vote' prod.id 'upvote' %}" class="btn btn-link text-success p-1" title="Upvote">
-                        <i class="fas fa-arrow-up"></i>
-                    </a>
-                    <span class="mx-2">{{ prod.upvotes }}</span>
-                    <div class="px-3"></div><!---BAD PRACTICE--->
-                    <a href="{% url 'vote' prod.id 'downvote' %}" class="btn btn-link text-danger p-1" title="Downvote">
-                        <i class="fas fa-arrow-down"></i>
-                    </a>
-                    <span class="mx-2">{{ prod.downvotes }}</span>
-                </div>
             </div>
         </div>
         {% endfor %}
@@ -55,9 +43,12 @@
         <a href='{% url "prods" %}?page={{ page_obj.previous_page_number }}' class="text-decoration-none">Previous </a>
         {% endif %}
 
+        {% if page_obj %}
         <span class='mx-4'>
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         </span>
+        {% endif %}
+
 
         {% if page_obj.has_next %}
         <a href='{% url "prods" %}?page={{ page_obj.next_page_number }}' class="text-decoration-none"> Next</a>

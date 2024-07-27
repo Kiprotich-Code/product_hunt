@@ -55,7 +55,14 @@ a {
 .profile-card img {
     width: 150px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 50%;
     margin-top: -20px; /* Half of the image height to center it */
+}
+
+
+.bg-img {
+    background-image: url(../images/comp.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }

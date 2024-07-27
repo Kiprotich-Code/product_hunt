@@ -3,17 +3,28 @@ from lead.models import Product, Vote
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from accounts.models import Profile, CustomUser
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-from .forms import AddProductForm
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
+from .forms import AddProductForm, ContactForm
 from accounts.forms import ProfileUpdateForm
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
-    members = CustomUser.objects.all()
+    members = CustomUser.objects.filter(profile__club_role__isnull=False).exclude(profile__club_role='')
+
+    # contact us logic 
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        
+    else:
+        form = ContactForm()
 
     context = {
-        'members': members
+        'members': members,
+        'form': form
     }
     return render(request, 'index.html', context)
 
@@ -22,9 +33,18 @@ def products(request):
         upvotes=Count('vote', filter=Q(vote__vote_type='upvote')),
         downvotes=Count('vote', filter=Q(vote__vote_type='downvote'))
     )
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        
+    else:
+        form = ContactForm()
 
     context = {
-        'prods': prods
+        'prods': prods,
+        'form': form
     }
     return render(request, 'products.html', context)
 
@@ -94,6 +114,15 @@ class ProfilesListView(ListView):
     paginate_by = 5
 
 
+# MY PROFILE 
+def my_profile(request):
+    user = request.user
+    context = {
+        'user': user
+    }
+    return render(request, 'members/my_profile.html', context)
+
+
 # MEMBER UPDATES PROFILE 
 @login_required()
 def update_profile(request):
@@ -104,7 +133,7 @@ def update_profile(request):
             try:
                 form.save()
                 messages.success(request, 'Successfully updated profile!')
-                return redirect('posts')
+                return redirect('my_profile')
             except Exception as e:
                 messages.error(request, 'There was an error updating your profile. Please try again later.')
         else:
@@ -118,3 +147,16 @@ def update_profile(request):
     }
 
     return render(request, 'members/update_profile.html', context)
+
+
+# MEMBER PROFILES 
+class MemberDetailView(DetailView):
+    context_object_name = 'member'
+    model = CustomUser
+    template_name = 'members/profile_details.html'
+
+# INDEX PROFILE DETAILS 
+class IndexProfileDetailView(DetailView):
+    context_object_name = 'member'
+    model = CustomUser
+    template_name = 'index_profile_details.html'

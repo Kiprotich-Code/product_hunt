@@ -92,7 +92,7 @@
                     pretending that the server crashes are just 'character-building moments.' Buckle up—it's going to be
                     a bumpy ride.
                 </p>
-                <a class="btn btn-lg btn-info rounded mb-3" href="">Get
+                <a class="btn btn-lg btn-info rounded mb-3" href="{% url 'login' %}">Get
                     Started</a>
             </div>
             <div class="col-12 col-md-6 py-md-5 rounded">
@@ -142,16 +142,17 @@
     <section>
         <div class="container p-5">
             <p class="text-info">Member Profiles</p>
-            <div class="d-flex gap-1 flex-wrap flex-column flex-md-row">
-                {% for mem in members %}
-                <div class="card" style="width: 20rem;">
-                    <img src="{% static 'images/coding.jpeg' %}" class="card-img-top" alt="..."
-                        style="width: 100%; height: 200px;">
-                    <hr>
+            <div class="d-flex gap-3 flex-wrap flex-column flex-md-row">
+                {% for member in members %}
+                <div class="card profile-card" style="width: 20rem;">
                     <div class="card-body">
-                        <p class="card-title fw-bold text-info">{{mem.full_names}}</p>
-                        <p class="card-title fw-bold text-info">{{mem.profile.club_role}}</p>
-                        <p class="card-title fw-bold text-info">{{mem.profile.designation}}</p>
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ member.profile.dp.url }}" alt="" class="profile-card img">
+                        </div>
+                        <h5 class="card-title mt-3"><strong>{{member.full_names}}</strong></h5>
+                        <p class="card-text">DSC {{member.profile.club_role}}</p>
+                        <p class="card-text">{{member.profile.designation}}</p>
+                        <a href="{% url 'index_profile_details' member.id %}">View Profile</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -165,9 +166,11 @@
                 </a>
                 {% endif %}
 
+                {% if page_obj %}
                 <span class='mx-4'>
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                 </span>
+                {% endif %}
 
                 {% if page_obj.has_next %}
                 <a href='{% url "index" %}?page={{ page_obj.next_page_number }}' class="text-decoration-none"> Next</a>
@@ -178,18 +181,18 @@
     {% endif %}
     {% endblock %}
     <!-- contact_us  -->
-    <section id="contact">
+    <section id="contact" style="background-color: rgb(20, 153, 142);">
         <div class="container p-5">
-            <p class="text-info">Contact Us</p>
+            <p class="fw-bold">Contact Us</p>
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{% static 'images/lg.jpg'%}" alt="" style="width: 100%;" class="rounded">
+                    <img src="{% static 'images/lg.jpg'%}" alt="" style="width: 100%; height: 100%;" class="rounded">
                 </div>
                 <div class="col-md-6">
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form | crispy }}
-                        <input type="submit" value="Contact Us" class="btn btn-info btn-block">
+                        <input type="submit" value="Contact Us" class="btn btn-dark btn-block">
                     </form>
                 </div>
             </div>

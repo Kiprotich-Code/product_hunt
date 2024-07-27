@@ -1,0 +1,27 @@
+{% extends '../members_dashboard.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="p-3">
+    <div class="container border rounded">
+        <div class="p-3">
+            <div class="d-flex justify-content-between">
+                <p># My Profile </p>
+                <a href="{% url 'update_profile'%}" class="btn btn-sm btn-outline-primary p-2">Update</a>
+            </div>
+            <img class="rounded-circle account-img p-2 m-2" src="{{ user.profile.dp.url }}"
+                style="width: 150px; height: 150px;" />
+            <div class="media-body">
+                <h2 class="account-heading fw-bold"> {{ user.full_names }}</h2>
+                <p class="small py-2">Email: {{ user.email }}</p>
+                <p class="text-secondary"> DSC {{ user.profile.club_role }} | {{ user.profile.designation }}</p>
+            </div>
+            <hr>
+            <p>Bio</p>
+            <p class="text-secondary">{{ user.profile.bio }}</p>
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
