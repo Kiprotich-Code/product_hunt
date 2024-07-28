@@ -77,6 +77,10 @@ class MembersProductCreateView(CreateView):
     form_class = AddProductForm
     success_url = '/mb_products/'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the author to the currently logged-in user
+        return super().form_valid(form)
+
 class MembersProductListView(ListView):
     context_object_name = 'products'
     model = Product
@@ -112,6 +116,10 @@ class ProfilesListView(ListView):
     model = CustomUser
     template_name = 'members/profiles.html'
     paginate_by = 5
+
+    def get_queryset(self):
+        # Filter out members with non-empty club_role
+        return CustomUser.objects.filter(profile__club_role__isnull=False).exclude(profile__club_role='')
 
 
 # MY PROFILE 

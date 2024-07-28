@@ -5,7 +5,7 @@ from lead.models import Product, Contact
 class AddProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('title', 'sub_title', 'desc', 'category', )
 
 class ContactForm(forms.ModelForm):
     class Meta:

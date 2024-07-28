@@ -18,7 +18,7 @@
                 <button class="btn btn-sm btn-outline-primary rounded p-2 my-2">{{prod.category}}</button>
                 <p class="card-title fw-bold text-info">{{prod.title}}</p>
                 <p class="fw-bold">{{prod.sub_title}} by
-                    <a href="" class="text-decoration-none">{{prod.author}}</a>
+                    <a href="{% url 'index_profile_details' prod.author.id %}" class="text-decoration-none">{{prod.author}}</a>
                 </p>
                 <p class="desc-preview" id="desc-preview-{{ forloop.counter }}">
                     {{ prod.desc|truncatewords:5 }}

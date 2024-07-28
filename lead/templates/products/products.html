@@ -29,7 +29,11 @@
                                         <td>{{product.id}}</td>
                                         <td>{{product.title}}</td>
                                         <td>{{product.category}}</td>
+                                        {% if product.author == request.user %}
+                                        <td>Me</td>
+                                        {% else %}
                                         <td>{{product.author}}</td>
+                                        {% endif %}
                                         <td>
                                             <a href="{% url 'product_update' product.id %}"
                                                 class="btn btn-sm btn-outline-primary">Update</a>
@@ -79,9 +83,9 @@
                     <div class="card-body">
                         <a class="btn btn-info mb-3 w-100" href="{% url 'add_product' %}">Add</a>
                         <a class="btn btn-dark mb-3 w-100" href="{% url 'products' %}">All Products</a>
-                    </div>                    
+                    </div>
                 </div>
-                
+
 
                 <!-- <div class="card mb-3">
                     <h5 class="card-header">Recent</h5>
@@ -115,4 +119,3 @@
     </div>
 </div>
 {% endblock %}
-

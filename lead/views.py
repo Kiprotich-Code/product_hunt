@@ -4,6 +4,8 @@ from django.views.generic import ListView, UpdateView, DeleteView, DetailView, C
 from .forms import AddUserForm, UpdateUserForm, AddCategoryForm, AddProductForm
 from .models import Category, Product
 from django.contrib.auth.decorators import login_required
+from accounts.forms import ProfileUpdateForm
+from django.contrib import messages
 
 # Create your views here.
 @login_required()
@@ -105,6 +107,10 @@ class ProductCreateView(CreateView):
     form_class = AddProductForm
     success_url = '/lead/products/'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the author to the currently logged-in user
+        return super().form_valid(form)
+
 class ProductListView(ListView):
     context_object_name = 'products'
     model = Product
@@ -122,3 +128,29 @@ class ProductDeleteView(DeleteView):
     model = Product
     success_url = '/lead/products/'
     template_name = 'products/confirm_delete_product.html'
+
+
+# MY PROFILE 
+@login_required()
+def ld_profile(request):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        
+        if form.is_valid():
+            try:
+                form.save()
+                messages.success(request, 'Successfully updated profile!')
+                return redirect('my_profile')
+            except Exception as e:
+                messages.error(request, 'There was an error updating your profile. Please try again later.')
+        else:
+            messages.error(request, 'There were issues with the form submission. Please correct the errors and try again.')
+    
+    else:
+        form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'ld_profile.html', context)

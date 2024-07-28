@@ -4,6 +4,7 @@ from . import views
 # URLS 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
+    path('ld_profile/', views.ld_profile, name="ld_profile"),    
 
     # USERS 
     path('users/', views.UsersListView.as_view(), name='users'),
