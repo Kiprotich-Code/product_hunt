@@ -14,8 +14,7 @@ SECRET_KEY = 'django-insecure-3to%9l^ek@-b(dhiwm81_(axf%us+0@#p$i7-4udx(w4!0r#%y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
 
 # Application definition
 
@@ -71,10 +70,15 @@ WSGI_APPLICATION = 'product_hunt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'LswhlSAKVafQZzuzeNKmeFdYhFAChtpU',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '54878',
     }
 }
+
 
 
 # Password validation
