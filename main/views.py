@@ -144,8 +144,12 @@ def update_profile(request):
                 return redirect('my_profile')
             except Exception as e:
                 messages.error(request, 'There was an error updating your profile. Please try again later.')
+                return redirect('my_profile')
+
         else:
             messages.error(request, 'There were issues with the form submission. Please correct the errors and try again.')
+            return redirect('my_profile')
+
     
     else:
         form = ProfileUpdateForm(instance=request.user.profile)
