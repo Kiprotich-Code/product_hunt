@@ -141,14 +141,14 @@ def update_profile(request):
             try:
                 form.save()
                 messages.success(request, 'Successfully updated profile!')
-                return redirect('my_profile')
+                return redirect('update_profile')
             except Exception as e:
                 messages.error(request, 'There was an error updating your profile. Please try again later.')
-                return redirect('my_profile')
+                return redirect('update_profile')
 
         else:
             messages.error(request, 'There were issues with the form submission. Please correct the errors and try again.')
-            return redirect('my_profile')
+            return redirect('update_profile')
 
     
     else:
