@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-lg bg-light p-3 fixed-top border-none">
             <div class="container-fluid">
                 <a class="navbar-brand px-md-5" id="brand" href="#">
-                    <img src="{% static 'images/mmtvc_logo.jpeg'%}" alt="" style="width: 40px;">
+                    
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -37,14 +37,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-md-flex justify-content-end w-100">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'prods'%}">Home</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}">Profiles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'prods' %}">Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'members_dashboard' %}">Dashboard</a>
@@ -54,15 +51,12 @@
                             <a class="nav-link" href="{% url 'index' %}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'prods' %}">Products</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}">Members</a>
                         </li>
-                        {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Contact</a>
+                            <a class="nav-link" href="{% url 'signup' %}">Join Us</a>
                         </li>
+                        {% endif %}
                         {% if user.is_authenticated %}
                         <li class="nav-item mx-md-5">
                             <a class="btn btn-info rounded" href="{% url 'signout'%}">Signout</a>
@@ -84,7 +78,7 @@
             <div class="col-12 col-md-6 p-5 mt-5">
                 <p class="small fw-lighter"># Open To The Public</p>
                 <h1 class="large_h fw-light fade-in">
-                    MMTVC Developer Student's Club
+                    Developer Student's Club
                 </h1>
 
                 <p class="fw-lighter">
@@ -106,7 +100,7 @@
     <section id="about">
         <div class="container-fluid p-5 bg-dark text-white">
             <div class="container">
-                <div class="row p-5">
+                <div class="row p-md-5">
                     <div class="col-12 col-md-6 px-5 border border-2 border-white about-img rounded">
                     </div>
                     <div class="col">
@@ -128,8 +122,6 @@
                             line of code is a step closer to world domination (or at least, a really cool app). Let's
                             make tech magic together, one keystroke at a time!
                         </p>
-
-                        <a href="" class="btn btn-info">Find Out More</a>
                     </div>
                 </div>
             </div>
@@ -188,7 +180,7 @@
                 <div class="col-md-6">
                     <img src="{% static 'images/lg.jpg'%}" alt="" style="width: 100%; height: 100%;" class="rounded">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 p-3">
                     <form action="" method="post">
                         {% csrf_token %}
                         {{form | crispy }}
@@ -198,7 +190,7 @@
             </div>
         </div>
     </section>
-
+    {% endblock %}
     <!-- footer  -->
     <footer>
         <div class="container-fluid bg-dark text-white">
@@ -224,12 +216,10 @@
                     </div>
 
                     <div class="text-center pt-3">
-                        <h3 class="fw-lighter text-info small">@2024: MMTVC DSC.</h3>
+                        <h3 class="fw-lighter text-info small">@2024: DSC.</h3>
                     </div>
                 </div>
     </footer>
-
-    {% endblock %}
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

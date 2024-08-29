@@ -6,7 +6,7 @@ from crispy_forms.layout import Layout, Submit, Div, Row, Column
 
 # Create your forms here 
 class MemberRegisterForm(UserCreationForm):
-    password = forms.CharField(label='Enter password', widget=forms.PasswordInput(
+    password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'style': 'max-width: 600px', 'placeholder': 'Enter Password'}
     ))
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput(
@@ -15,7 +15,7 @@ class MemberRegisterForm(UserCreationForm):
 
     class Meta():
         model = CustomUser
-        fields = ['email', 'full_names', 'password', 'password2', ]
+        fields = ['email', 'full_names', 'password1', ]
         widgets = {
             'email': forms.TextInput(attrs={'class': 'form-control',  'style': 'max-width: 600px', 'placeholder': "Member's Email Address"}),
             'full_names': forms.TextInput(attrs={'class': 'form-control',  'style': 'max-width: 600px', 'placeholder': "Member's Name"}),

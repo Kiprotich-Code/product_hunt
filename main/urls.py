@@ -3,8 +3,8 @@ from . import views
 
 # URLS 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('prods/', views.products, name='prods'),
+    path('', views.products, name='prods'),
+    path('index/', views.index, name='index'),
     path('vote/<int:product_id>/<str:vote_type>/', views.vote, name='vote'),
 
     # MEMBERS URLS 

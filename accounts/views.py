@@ -75,3 +75,37 @@ def profile(request):
     }
 
     return render(request, 'profile.html', context)
+
+def register_user(request):
+    if request.method == 'POST':
+        form = MemberRegisterForm(request.POST)
+        
+        if form.is_valid():
+            # Access cleaned_data after form validation
+            password1 = form.cleaned_data.get('password')
+            password2 = form.cleaned_data.get('password2')
+
+            # Check for password mismatch
+            if password1 != password2:
+                messages.error(request, 'Password Mismatch!')
+                return redirect('signup')
+
+            # Save the user and redirect to login
+            form.save()
+            messages.success(request, 'You\'ve successfully created an account!')
+            return redirect('login')
+        
+        else:
+            # Debugging form errors
+            error_messages = form.errors.as_json()  # Get form errors as JSON
+            print(error_messages)  # Print errors to console for debugging
+
+            # Optionally show form errors to the user (in a real app, you might show a friendlier message)
+            messages.error(request, f'Invalid form submission: {form.errors}')
+            return redirect('signup')
+
+    else:
+        form = MemberRegisterForm()
+
+    context = {'form': form}
+    return render(request, "register.html", context)
