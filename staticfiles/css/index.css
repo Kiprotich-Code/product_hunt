@@ -1,27 +1,136 @@
-
-/* .header_hero {
-    background-image: url('../images/1-1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-} */
-
-.large_h {
-    font-size: 4vw;
+/* Base Styles */
+body {
+    background-color: #0d0d0d;
+    color: #33ff33;
+    font-family: 'VT323', monospace;
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    list-style: none;
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ffcc;
 }
 
 a {
-    cursor: pointer;
+    color: #00ffcc;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+a:hover {
+    color: #ff66ff;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0d0d0d;
+    border-bottom: 1px solid #33ff33;
+}
+
+.nav-link {
+    color: #33ff33 !important;
+}
+
+.navbar-brand img {
+    filter: grayscale(100%) brightness(0.8);
+}
+
+/* Hacker Terminal Look */
+.header {
+    background-color: #1a1a1a;
+    padding: 30px;
+    box-shadow: 0px 0px 15px #00ffcc;
+    animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+h1.large_h {
+    font-size: 3em;
+    color: #33ff33;
+    text-shadow: 0 0 15px #00ffcc, 0 0 25px #ff66ff;
+}
+
+p {
+    color: #999;
+}
+
+/* Glitch Animation */
+.large_h {
+    position: relative;
+}
+
+.large_h::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 red;
+    top: 0;
+    color: #33ff33;
+    background: #0d0d0d;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 2.5s infinite linear alternate-reverse;
+}
+
+.large_h::after {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    top: 0;
+    color: #ff66ff;
+    background: #0d0d0d;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(12px, 9999px, 88px, 0);
+        transform: skew(0.3deg);
+    }
+
+    5% {
+        clip: rect(25px, 9999px, 15px, 0);
+        transform: skew(0.1deg);
+    }
+
+    10% {
+        clip: rect(85px, 9999px, 20px, 0);
+        transform: skew(0.5deg);
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #0d0d0d;
+    color: #33ff33;
+    border-top: 1px solid #33ff33;
+}
+
+footer h4,
+footer h5,
+footer ul {
+    color: #00ffcc;
+}
+
 
 .fade-in {
     opacity: 1;
@@ -52,12 +161,14 @@ a {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .profile-card img {
     width: 150px;
     height: 150px;
     object-fit: contain;
     border-radius: 50%;
-    margin-top: -20px; /* Half of the image height to center it */
+    margin-top: -20px;
+    /* Half of the image height to center it */
 }
 
 
@@ -65,4 +176,88 @@ a {
     background-image: url(../images/comp.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+
+/* forms   */
+/* Form Container */
+.form-container {
+    background-color: #0d0d0d;
+    color: #33ff33;
+    font-family: 'VT323', monospace;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+    border-radius: 10px;
+    margin-top: 30px;
+    padding: 30px;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    border: 2px solid #33ff33;
+    padding: 20px;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+/* Form Content */
+.form-content {
+    background-color: transparent;
+    color: #33ff33;
+}
+
+.form-content h3 {
+    color: #ff66ff;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.form-content hr {
+    border-color: #33ff33;
+}
+
+.form-group input {
+    background-color: #0d0d0d;
+    color: #33ff33;
+    border: 1px solid #33ff33;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'VT323', monospace;
+}
+
+.form-group input:focus {
+    border-color: #ff66ff;
+    outline: none;
+    box-shadow: 0 0 8px #ff66ff;
+}
+
+.signup-btn {
+    background-color: #0d0d0d;
+    color: #00ffcc;
+    border: 1px solid #33ff33;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn:hover {
+    background-color: #00ffcc;
+    color: #0d0d0d;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+.message-box p {
+    color: #ff3333;
+}
+
+/* Link Styling */
+.form-content a {
+    color: #33ff33;
+}
+
+.form-content a:hover {
+    color: #ff66ff;
 }
