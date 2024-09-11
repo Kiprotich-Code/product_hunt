@@ -81,20 +81,10 @@ def register_user(request):
         form = MemberRegisterForm(request.POST)
         
         if form.is_valid():
-            # Access cleaned_data after form validation
-            password1 = form.cleaned_data.get('password')
-            password2 = form.cleaned_data.get('password2')
-
-            # Check for password mismatch
-            if password1 is not password2:
-                messages.error(request, 'Password Mismatch!')
-                return redirect('signup')
-            
-            else:
-                # Save the user and redirect to login
-                form.save()
-                messages.success(request, 'You\'ve successfully created an account!')
-                return redirect('login')
+            # Save the user and redirect to login
+            form.save()
+            messages.success(request, 'You\'ve successfully created an account!')
+            return redirect('login')
             
         else:
             # Debugging form errors
