@@ -40,10 +40,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-primary active" aria-current="page" href="{% url 'index'%}">Home</a>
                         </li>
-                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link text-primary" href="{% url 'prods' %}">Ideas</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link text-primary" href="{% url 'members_dashboard' %}">Dashboard</a>
                         </li>
