@@ -86,15 +86,16 @@ def register_user(request):
             password2 = form.cleaned_data.get('password2')
 
             # Check for password mismatch
-            if password1 != password2:
+            if password1 is not password2:
                 messages.error(request, 'Password Mismatch!')
                 return redirect('signup')
-
-            # Save the user and redirect to login
-            form.save()
-            messages.success(request, 'You\'ve successfully created an account!')
-            return redirect('login')
-        
+            
+            else:
+                # Save the user and redirect to login
+                form.save()
+                messages.success(request, 'You\'ve successfully created an account!')
+                return redirect('login')
+            
         else:
             # Debugging form errors
             error_messages = form.errors.as_json()  # Get form errors as JSON
